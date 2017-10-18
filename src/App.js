@@ -5,21 +5,38 @@
     class Form extends React.Component {
         state = { title: '', link: ''};
 
+        handleItem = () => this.props.itemHandler();
+
+        handleAddItem =(e) => {
+          e.preventDefault()
+          api.add(this.state.title, this.state.link);
+          this.handleItem()
+        }
+
+        handleChange =(e) => {
+           let name= e.target.name;
+           this.setState({name});
+        }
+
         render() {
            return (
              <form style={{marginTop: '30px'}}>
                 <h3>Add a new post</h3>
                 <div className="form-group">
                   <input type="text"
-                    className="form-control" placeholder="Title"
-                    value={this.state.title} ></input>
+                    className="form-control" 
+                    placeholder="Title"
+                    value={this.state.title} >
+                    onChange={this.handleChange}</input>
                 </div>
                 <div className="form-group">
                   <input type="text"
-                     className="form-control" placeholder="Link"
-                     value={this.state.link} ></input>
+                     className="form-control"
+                     placeholder="Link"
+                     value={this.state.link}
+                     onChange={this.handleChange} ></input>
                 </div>
-                <button type="submit" className="btn btn-primary" >Post</button>
+                <button type="submit" className="btn btn-primary" >onClick={this.handleAddItem}Post</button>
               </form>
             );
           }
@@ -74,6 +91,10 @@
           api.upvote(id) ;
           this.setState({});
       };
+
+      itemAdd =() =>{
+        this.setState({});
+      }
       render() {
           let posts = _.sortBy(api.getAll(), function(post) {
               return - post.upvotes;
@@ -87,7 +108,7 @@
                           <h1>Hacker News</h1>
                              <NewsList posts={posts} 
                                   upvoteHandler={this.incrementUpvote} />
-                             <Form />
+                             <Form itemHandler ={this.itemAdd}/>
                        </div>
                     </div>
                  </div>
