@@ -1,6 +1,7 @@
   import React from 'react';
     import _ from 'lodash';
     import api from './test/stubAPI';
+    import { Link } from 'react-router';
 
     class Form extends React.Component {
         state = { title: '', link: ''};
@@ -51,8 +52,7 @@
           let cursor = { cursor: 'pointer' } ;
           let line ;
           if (this.props.post.link ) {
-             line = <a href={this.props.post.link} >
-                          {this.props.post.title} </a> ;
+             line =  <Link to={'/posts/' + this.props.post.id }>Comments</Link>;
           } else {
              line = <span>{this.props.post.title} </span> ;
           }
@@ -101,18 +101,11 @@
           }
           );
           return (
-              <div className="container">
-                 <div className="row">
-                    <div className="col-md-6 col-md-offset-3">
-                       <div className="page-header">
-                          <h1>Hacker News</h1>
-                             <NewsList posts={posts} 
-                                  upvoteHandler={this.incrementUpvote} />
-                             <Form itemHandler ={this.itemAdd}/>
-                       </div>
-                    </div>
-                 </div>
-              </div>
+              <div >
+               <NewsList posts={posts} 
+                    upvoteHandler={this.incrementUpvote} />
+               <Form addHandler={this.addPost}  />
+          </div>
           );
       } 
     }
