@@ -49,7 +49,7 @@ class Form extends React.Component {
 
 class Comment extends React.Component {
     handleVote = () => {
-        this.props.upvoteHandler( this.props.comment.id,
+        this.props.upvoteHandler( this.props.comment._id,
             this.props.comment.upvotes);
     };
     render() {
@@ -98,6 +98,7 @@ class CommentView extends React.Component {
             }
           }) ; 
       } 
+      
     addComment = (comment, name) => {
         request
            .post('http://0.0.0.0:3000/api/posts/' + 
@@ -134,8 +135,7 @@ class CommentView extends React.Component {
     };
 
     render() {
-        let pid = parseInt(this.props.params.postId,10) ;
-        let post = api.getPost( pid) ;
+        let post = api.getPost( this.props.params.postId) ;
         let display = null ;
         let line = null ;
         if (post) { 

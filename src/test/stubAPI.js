@@ -13,24 +13,24 @@ class StubAPI {
         return this.posts ;
     }
 
-    setOrUpdate(post) {
-        var index = _.findIndex(this.posts, {id: post.id} );   
-        if (index !== -1) {                 
-            this.posts.splice(index,1,post) ;
-        } else {
-            this.posts.push(post) ;
-        }
-        return true ;
-    }
+     setOrUpdate(post) {
+      var index = _.findIndex(this.posts, { _id: post._id} );   
+      if (index !== -1) {                 
+          this.posts.splice(index,1,post) ;
+      } else {
+          this.posts.push(post) ;
+      }
+      return true ;
+  }
 
-    getPost(id) {
-        var result = null ;
-        var index = _.findIndex(this.posts, { 'id': id} );     
-        if (index !== -1) {                 
-            result = this.posts[index];
-        }
-        return result ;
-    }
+  getPost(id) {
+      var result = null ;
+      var index = _.findIndex(this.posts, { '_id': id} );     
+      if (index !== -1) {                 
+          result = this.posts[index];
+      }
+      return result ;
+  }
 
 }
 

@@ -50,8 +50,8 @@ class Form extends React.Component {
 }
 
 class NewsItem extends React.Component {
-  handleVote = () =>  this.props.upvoteHandler(this.props.post.id,
-      this.props.post.upvotes);
+  handleVote = () =>  this.props.upvoteHandler(this.props.post._id,
+        this.props.post.upvotes);
 
   render() {
       let lineStyle = {
@@ -71,7 +71,7 @@ class NewsItem extends React.Component {
               onClick={this.handleVote} ></span>
           {this.props.post.upvotes}
           <span style={lineStyle} >{line}<span>
-              <Link to={'/posts/' + this.props.post.id }>Comments</Link>
+              <Link to={'/posts/' + this.props.post._id }>Comments</Link>
             </span>
           </span>
         </div>  
